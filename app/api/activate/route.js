@@ -9,8 +9,8 @@ export async function POST(request) {
   const password = String(body.password || "");
   const code = String(body.code || "").trim();
   const sitePassword = process.env.SITE_PASSWORD || "rb5320";
-  const adminUrl = process.env.VPS_ADMIN_URL || "";
-  const adminToken = process.env.VPS_ADMIN_TOKEN || "";
+  const adminUrl = process.env.VPS_ADMIN_URL || "http://43.240.117.215:5006";
+  const adminToken = process.env.VPS_ADMIN_TOKEN || "truyen";
 
   if (!sitePassword || password !== sitePassword) {
     return Response.json({ message: "Sai mật khẩu" }, { status: 401 });
