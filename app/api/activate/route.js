@@ -8,7 +8,7 @@ export async function POST(request) {
 
   const password = String(body.password || "");
   const code = String(body.code || "").trim();
-  const sitePassword = process.env.SITE_PASSWORD || "";
+  const sitePassword = process.env.SITE_PASSWORD || "rb5320";
   const adminUrl = process.env.VPS_ADMIN_URL || "";
   const adminToken = process.env.VPS_ADMIN_TOKEN || "";
 
