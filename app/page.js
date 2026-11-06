@@ -35,7 +35,7 @@ export default function Page() {
     <main>
       <form onSubmit={onSubmit}>
         <h1>Kích hoạt VIP</h1>
-        <p>Nhập 6 số trên màn hình robot.</p>
+        <p>Nhập mã trên màn hình robot.</p>
         <label>
           Mật khẩu
           <input
@@ -48,11 +48,13 @@ export default function Page() {
         <label>
           Mã VIP
           <input
-            inputMode="numeric"
             maxLength={6}
             value={code}
-            placeholder="482917"
-            onChange={(event) => setCode(event.target.value.replace(/\D/g, "").slice(0, 6))}
+            placeholder="RBA5E9"
+            autoCapitalize="characters"
+            onChange={(event) =>
+              setCode(event.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6))
+            }
           />
         </label>
         <button type="submit" disabled={loading || code.length !== 6}>

@@ -7,7 +7,7 @@ export async function POST(request) {
   }
 
   const password = String(body.password || "");
-  const code = String(body.code || "").trim();
+  const code = String(body.code || "").trim().toUpperCase();
   const sitePassword = process.env.SITE_PASSWORD || "rb5320";
   const adminUrl = process.env.VPS_ADMIN_URL || "http://43.240.117.215:5006";
   const adminToken = process.env.VPS_ADMIN_TOKEN || "truyen";
@@ -15,8 +15,8 @@ export async function POST(request) {
   if (!sitePassword || password !== sitePassword) {
     return Response.json({ message: "Sai mật khẩu" }, { status: 401 });
   }
-  if (!/^\d{6}$/.test(code)) {
-    return Response.json({ message: "Mã phải là 6 số" }, { status: 400 });
+  if (!/^[A-Z0-9]{6}$/.test(code)) {
+    return Response.json({ message: "Mã phải gồm 6 chữ hoặc số" }, { status: 400 });
   }
   if (!adminUrl || !adminToken) {
     return Response.json({ message: "Trang web chưa cấu hình server" }, { status: 500 });
